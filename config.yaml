@@ -1,1 +1,17 @@
 name: my_gin_admin
+
+db:
+  mysql:
+    prefix: ""
+    port: "4306"
+    config: charset=utf8mb4&parseTime=True&loc=Local
+    db-name: My-Gin-Admin
+    username: root
+    password:
+    path:
+    engine: "InnoDB"
+    log-mode: error
+    max-idle-conns: 10
+    max-open-conns: 100
+    singular: false
+    log-zap: false

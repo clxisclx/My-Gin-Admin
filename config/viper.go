@@ -1,13 +1,12 @@
 package config
 
 import (
-	"My-Gin-Admin/global"
 	"fmt"
 	"github.com/spf13/viper"
 	"path/filepath"
 )
 
-func Viper(path string, config *global.SvcConfig) *viper.Viper {
+func Viper(path string, config *SvcConfig) *viper.Viper {
 	// 工作目录
 	mainDir, err := filepath.Abs(".")
 	if err != nil {

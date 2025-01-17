@@ -10,7 +10,7 @@ import (
 func main() {
 
 	// 初始化配置文件
-	_ = config.Viper("config.yaml", &config.MGA_CONFIG)
+	_ = config.Viper("config.yaml", nil, &config.MGA_CONFIG)
 
 	fmt.Printf("配置文件初始化完成,%s\n", "config.yaml")
 	fmt.Printf("数据库配置初始化完成,%s:%s/%s\n", config.MGA_CONFIG.DB.Mysql.Path, config.MGA_CONFIG.DB.Mysql.Port, config.MGA_CONFIG.DB.Mysql.Dbname)

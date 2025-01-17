@@ -6,9 +6,15 @@ import (
 	"path/filepath"
 )
 
-func Viper(path string, config *SvcConfig) *viper.Viper {
+func Viper(path string, workDir *string, config *SvcConfig) *viper.Viper {
 	// 工作目录
-	mainDir, err := filepath.Abs(".")
+	var mainDir string
+	var err error
+	if workDir == nil {
+		mainDir, err = filepath.Abs(".")
+	} else {
+		mainDir, err = filepath.Abs(*workDir)
+	}
 	if err != nil {
 		panic(fmt.Errorf("failed to get main directory: %w", err))
 	} else {

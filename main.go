@@ -3,23 +3,16 @@ package main
 import (
 	"My-Gin-Admin/config"
 	"My-Gin-Admin/routes"
-	"fmt"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
 func main() {
-
-	// 初始化配置文件
-	_ = config.Viper("config.yaml", nil, &config.MGA_CONFIG)
-
-	fmt.Printf("配置文件初始化完成,%s\n", "config.yaml")
-	fmt.Printf("数据库配置初始化完成,%s:%s/%s\n", config.MGA_CONFIG.DB.Mysql.Path, config.MGA_CONFIG.DB.Mysql.Port, config.MGA_CONFIG.DB.Mysql.Dbname)
-
-	// gorm 初始化
-	config.GormInit()
-	fmt.Println("gorm初始化成功")
+	// 统一初始化配置
+	config.InitAll("config.yaml")
 
 	router := gin.Default()
 	routes.UserRoutesInit(router)
+	config.MGA_LOG.Info("启动服务器", zap.String("port", ":7070"))
 	router.Run(":7070")
 }

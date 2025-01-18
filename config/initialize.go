@@ -8,12 +8,8 @@ func InitAll(configFile string) {
 	InitLogger()
 
 	// 初始化配置文件
-	if err := Viper(configFile, nil, &MGA_CONFIG); err != nil {
-		MGA_LOG.Error("配置文件初始化失败",
-			zap.String("config_file", configFile),
-			zap.Any("error", err))
-		return
-	}
+	Viper(configFile, nil, &MGA_CONFIG)
+
 	MGA_LOG.Info("配置文件初始化完成",
 		zap.String("config_file", configFile))
 

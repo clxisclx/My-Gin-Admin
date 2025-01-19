@@ -5,6 +5,7 @@ import (
 	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 type DB struct {
@@ -32,7 +33,14 @@ func Dsn() string {
 }
 
 func GormInit() {
-	init, err := gorm.Open(mysql.Open(Dsn()), &gorm.Config{})
+	init, err := gorm.Open(mysql.Open(Dsn()), &gorm.Config{
+		Logger: logger.New(
+			zap.NewStdLog(MGA_LOG), // 使用 zap 日志
+			logger.Config{
+				LogLevel: logger.Info, // 设置 GORM 日志等级为 Info
+				Colorful: false,       // 启用彩色日志
+			},
+		)})
 	if err != nil {
 		panic(err)
 	}

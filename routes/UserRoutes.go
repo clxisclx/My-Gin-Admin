@@ -9,7 +9,8 @@ func UserRoutesInit(router *gin.Engine) {
 
 	adminRouter := router.Group("/user")
 	{
-		adminRouter.GET("/index", user.UserController{}.Index)
+		adminRouter.GET("/index", user.UserApi{}.Index)
+		adminRouter.POST("/create", user.UserApi{}.Create)
 	}
 
 }

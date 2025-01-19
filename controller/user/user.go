@@ -13,7 +13,6 @@ func (c UserApi) Index(ctx *gin.Context) {
 }
 
 func (c UserApi) Create(ctx *gin.Context) {
-
 	var user models.UserReq
 	err := ctx.ShouldBindJSON(&user)
 	if err != nil {

@@ -15,6 +15,8 @@ func main() {
 	router := gin.Default()
 	// 日志中间件
 	router.Use(middleware.LoggerMiddleware(config.MGA_LOG))
+	// 自定义 Recovery 中间件
+	router.Use(middleware.CustomRecovery())
 
 	routes.UserRoutesInit(router)
 	config.MGA_LOG.Info("启动服务器", zap.String("port", ":7070"))

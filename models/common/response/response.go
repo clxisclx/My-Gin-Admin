@@ -1,6 +1,9 @@
 package response
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
 type Response struct {
 	Code int         `json:"code"`
@@ -14,7 +17,6 @@ const (
 )
 
 func Result(code int, data interface{}, msg string, c *gin.Context) {
-	// 开始时间
 	c.JSON(200, Response{
 		code,
 		data,
@@ -28,4 +30,12 @@ func Success(data interface{}, c *gin.Context) {
 
 func Fail(c *gin.Context) {
 	Result(ERROR, nil, "操作失败", c)
+}
+
+func FailWithInternalServer(c *gin.Context) {
+	c.JSON(200, Response{
+		http.StatusInternalServerError,
+		nil,
+		"网络异常",
+	})
 }

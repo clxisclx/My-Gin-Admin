@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"go.uber.org/zap"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -36,4 +37,12 @@ func GormInit() {
 		panic(err)
 	}
 	MGA_DB = init
+
+	MGA_LOG.Info("数据库配置初始化完成",
+		zap.String("path", MGA_CONFIG.DB.Mysql.Path),
+		zap.String("port", MGA_CONFIG.DB.Mysql.Port),
+		zap.String("dbname", MGA_CONFIG.DB.Mysql.Dbname))
+
+	MGA_LOG.Info("gorm初始化成功")
+
 }

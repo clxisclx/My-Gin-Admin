@@ -3,6 +3,7 @@ package config
 import (
 	"fmt"
 	"github.com/spf13/viper"
+	"go.uber.org/zap"
 	"path/filepath"
 )
 
@@ -35,6 +36,9 @@ func Viper(path string, workDir *string, config *SvcConfig) *viper.Viper {
 	if err != nil {
 		panic(fmt.Errorf("failed to unmarshal config: %w", err))
 	}
+
+	MGA_LOG.Info("配置文件初始化完成",
+		zap.String("config_file", path))
 
 	return v
 }

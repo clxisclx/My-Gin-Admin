@@ -11,6 +11,9 @@ func UserRoutesInit(router *gin.Engine) {
 	{
 		adminRouter.GET("/index", user.UserApi{}.Index)
 		adminRouter.POST("/create", user.UserApi{}.Create)
+		adminRouter.POST("/delete", user.UserApi{}.Delete)
+		adminRouter.POST("/update", user.UserApi{}.Update)
+		adminRouter.GET("/query", user.UserApi{}.QueryById)
 	}
 
 }

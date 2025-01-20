@@ -12,8 +12,9 @@ type Response struct {
 }
 
 const (
-	ERROR   = 7
-	SUCCESS = 200
+	FAIL           = 7
+	SUCCESS        = 200
+	QUERY_NOT_DATA = 1000 // 未查询到数据
 )
 
 func Result(code int, data interface{}, msg string, c *gin.Context) {
@@ -29,7 +30,15 @@ func Success(data interface{}, c *gin.Context) {
 }
 
 func Fail(c *gin.Context) {
-	Result(ERROR, nil, "操作失败", c)
+	Result(FAIL, nil, "操作失败", c)
+}
+
+func QueryNotData(c *gin.Context) {
+	Result(QUERY_NOT_DATA, nil, "操作成功", c)
+}
+
+func Error(code int, data interface{}, msg string, c *gin.Context) {
+	Result(code, data, msg, c)
 }
 
 func FailWithInternalServer(c *gin.Context) {

@@ -12,7 +12,7 @@ func main() {
 	// 统一初始化配置
 	config.InitAll("config.yaml")
 	// 路由
-	router := gin.Default()
+	router := gin.New()
 	// 日志中间件
 	router.Use(middleware.LoggerMiddleware(config.MGA_LOG))
 	// 自定义 Recovery 中间件

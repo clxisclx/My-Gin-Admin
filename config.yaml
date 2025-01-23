@@ -15,3 +15,11 @@ db:
     max-open-conns: 100
     singular: false
     log-zap: false
+
+redis:
+  addr:
+  port:
+  password:
+  db:
+
+

@@ -9,7 +9,7 @@ import (
 )
 
 type DB struct {
-	Mysql Mysql `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
+	Mysql Mysql `json:"mysql" yaml:"mysql"`
 }
 
 type Mysql struct {
@@ -42,6 +42,7 @@ func GormInit() {
 			},
 		)})
 	if err != nil {
+		MGA_LOG.Error("gorm初始化失败", zap.Error(err))
 		panic(err)
 	}
 	MGA_DB = init

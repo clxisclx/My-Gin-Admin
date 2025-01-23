@@ -19,6 +19,7 @@ type User struct {
 }
 
 func init() {
+	config.InitLogger()
 	var workDir = "../"
 	config.Viper("config.yaml", &workDir, &config.MGA_CONFIG)
 	config.GormInit()

@@ -10,4 +10,7 @@ func InitAll(configFile string) {
 
 	// gorm 初始化
 	GormInit()
+
+	// redis 初始化
+	RedisInit()
 }

@@ -10,7 +10,8 @@ import (
 
 func main() {
 	// 统一初始化配置
-	config.InitAll("config.yaml")
+	config.InitAll("config_clx.yaml")
+	//config.InitAll("config.yaml")
 	// 路由
 	router := gin.New()
 	// 日志中间件
@@ -19,6 +20,7 @@ func main() {
 	router.Use(middleware.CustomRecovery())
 
 	routes.UserRoutesInit(router)
+	routes.SysRoutesInit(router)
 	config.MGA_LOG.Info("启动服务器", zap.String("port", ":7070"))
 	router.Run(":7070")
 }

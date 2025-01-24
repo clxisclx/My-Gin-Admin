@@ -1,4 +1,4 @@
-package DO
+package model
 
 import (
 	"gorm.io/gorm"
@@ -15,6 +15,6 @@ type User struct {
 	Avatar    string    `gorm:"column:avatar;type:text;comment:头像"`
 }
 
-func (User) TableName() string {
+func (this User) TableName() string {
 	return "user"
 }

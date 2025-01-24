@@ -1,8 +1,8 @@
 package user
 
 import (
-	"My-Gin-Admin/controller/user/models/req"
 	"My-Gin-Admin/models/common/response"
+	"My-Gin-Admin/models/req"
 	"github.com/gin-gonic/gin"
 )
 

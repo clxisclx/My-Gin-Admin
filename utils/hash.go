@@ -1,7 +1,6 @@
 package utils
 
 import (
-	"encoding/base64"
 	"golang.org/x/crypto/argon2"
 	"golang.org/x/exp/rand"
 )
@@ -29,14 +28,4 @@ func ComparePassword(hashedPassword string, password string, salt string) bool {
 	newHash := HashPassword(password, []byte(salt))
 	// 比较哈希值是否相同
 	return newHash == hashedPassword
-}
-
-// Base64Encode base64 编码
-func Base64Encode(data []byte) string {
-	return base64.RawStdEncoding.EncodeToString(data)
-}
-
-// Base64Decode base64 解码
-func Base64Decode(data string) ([]byte, error) {
-	return base64.RawStdEncoding.DecodeString(data)
 }

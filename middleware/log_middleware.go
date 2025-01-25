@@ -1,11 +1,11 @@
 package middleware
 
 import (
+	"My-Gin-Admin/utils"
 	"bytes"
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/google/uuid"
 	"go.uber.org/zap"
 	"strings"
 	"time"
@@ -21,11 +21,11 @@ func (w responseBodyWriter) Write(b []byte) (int, error) {
 	return w.ResponseWriter.Write(b)
 }
 
-// 日志中间件
+// LoggerMiddleware 日志中间件
 func LoggerMiddleware(logger *zap.Logger) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// 生成并设置 traceId
-		traceId := uuid.New().String()
+		traceId := utils.GenerateUuid()
 		c.Set("traceId", traceId)
 
 		// 记录请求开始的时间
@@ -83,11 +83,11 @@ func LoggerMiddleware(logger *zap.Logger) gin.HandlerFunc {
 			fmt.Sprintf("URL: %s", path),
 			fmt.Sprintf("Method: %s", method),
 			fmt.Sprintf("Params: %s", requestParams),
+			fmt.Sprintf("Response: %s", responseContent),
 			fmt.Sprintf("Headers: %s", string(headerJSON)),
 			fmt.Sprintf("ClientIP: %s", clientIP),
 			fmt.Sprintf("Status: %d", statusCode),
 			fmt.Sprintf("Duration: %s", duration.String()),
-			fmt.Sprintf("Response: %s", responseContent),
 			"----------------------------------------",
 		}
 
